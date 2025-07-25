@@ -26,3 +26,19 @@ for batch in list_stream:
         print(f"Name: {meta["path"]}, size: {meta["size"]}")
 
 ```
+
+Another example, list all the cogs in idea-oisst
+
+```python
+import obstore 
+from os import environ as env
+
+env["AWS_ENDPOINT_URL"] = "https://projects.pawsey.org.au"
+
+store = obstore.store.from_url("s3://idea-oisst", skip_signature = True, region = '')
+l = store.list_with_delimiter()
+len(l["objects"])
+#15973
+```
+
+
