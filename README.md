@@ -41,4 +41,22 @@ len(l["objects"])
 #15973
 ```
 
+Get the curated object list
 
+```python
+import pyarrow.parquet as pq
+
+from obstore.fsspec import FsspecStore
+from os import environ as env
+
+env["AWS_ENDPOINT_URL"] = "https://projects.pawsey.org.au"
+
+
+fs = FsspecStore("s3", skip_signature=True, region="")
+
+url = "s3://idea-objects/idea-curated-objects.parquet"
+parquet_file = pq.ParquetFile(url, filesystem=fs)
+
+print(parquet_file.schema_arrow)
+
+```
